@@ -251,7 +251,7 @@ function draw()
 		}
 		if(!isContact)
 		{
-			gameChar_y +=2;
+			gameChar_y +=4;
 			isFalling = true; 
 			JumpActive = false;
 		}
