@@ -31,6 +31,8 @@ var enemies;
 var JumpActive;
 
 var jumpSound;
+var winSound;
+var dieSound;
 
 function preload()
 {
@@ -39,6 +41,12 @@ function preload()
     //load your sounds here
     jumpSound = loadSound('assets/jump.wav');
     jumpSound.setVolume(0.1);
+
+	winSound = loadSound('assets/win.wav');
+    winSound.setVolume(0.4);
+
+	dieSound = loadSound('assets/die.wav');
+    dieSound.setVolume(0.2);
 }
 
 function setup()
@@ -161,6 +169,7 @@ function draw()
 		{
 			if(lives > 0)
 			{
+				dieSound.play();
 				lives -= 1;
 				startGame();
 				break;
@@ -242,7 +251,7 @@ function draw()
 		}
 		if(!isContact)
 		{
-			gameChar_y +=4;
+			gameChar_y +=2;
 			isFalling = true; 
 			JumpActive = false;
 		}
@@ -255,6 +264,7 @@ function draw()
 
 	if (isPlummeting)
 	{
+		dieSound.play();
 		gameChar_y += 5;
 	}
 
@@ -593,6 +603,7 @@ function checkFlagpole()
 		flagpole.isReached = true;
 		isLeft = false;
 		isRight = false;
+		winSound.play();
 	}
 }
 
